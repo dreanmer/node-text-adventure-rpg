@@ -1,19 +1,27 @@
 import {SingletonRoom, Room} from "../../lib/Room";
 import {Player} from "../../lib/Player";
-import {MainRoom} from "./MainRoom";
+import {Connection} from "../../lib/interactive/Connection";
+import {EntranceHall} from "./EntranceHall";
 
+/**
+ * todo - wip
+ */
 export class DarkRoom extends SingletonRoom implements Room {
 
-    public processAction(command: string, params: string[], player: Player): void {
-        switch (command) {
-            case 'open':
-            case 'enter':
-                if (['west', 'door'].every(i => params.includes(i))) player.moveTo(MainRoom.getInstance());
-        }
-    }
+    interactions = [
+        new Connection(
+            'west door',
+            'Behind you, the `west door` where you come',
+            EntranceHall
+        ),
+    ];
 
     getDescription(player: Player): string {
-        return "You can see nothing. Behind you the west `door` of the room.";
+        if (player.hasItem('torch')) {
+            return "With your torch you can see everything in this room";
+        }
+
+        return "Its soo much dark in this room that you can see nothing";
     }
 
     getName(): string {

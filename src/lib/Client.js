@@ -27,7 +27,9 @@ class CliClient extends InteractiveClient {
      */
     constructor() {
         super();
-        this.recursivePrompt();
+        setTimeout(() => {
+            this.recursivePrompt();
+        }, 1000);
     }
     /**
      * recursively prompt input from cli and emit each input as event

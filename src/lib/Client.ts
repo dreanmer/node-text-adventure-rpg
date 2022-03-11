@@ -38,7 +38,9 @@ export class CliClient extends InteractiveClient {
      */
     public constructor() {
         super();
-        this.recursivePrompt();
+        setTimeout(() => {
+            this.recursivePrompt();
+        }, 1000);
     }
 
     /**

@@ -10,6 +10,7 @@ class Player {
      * we also subscribe the processInput method to the input event from player client
      */
     constructor(name, client) {
+        this.inventory = [];
         this.client = client;
         this.name = name;
         this.client.on('input', (data) => {
@@ -19,7 +20,6 @@ class Player {
                 this.currentLocation.processAction(params.shift(), params, this);
             // player actions
             this.processAction(data);
-            // todo - if none action was triggered, we should output an `invalid action error`
         });
     }
     /**
@@ -30,7 +30,13 @@ class Player {
             this.currentLocation.removePlayer(this);
         room.addPlayer(this);
         this.currentLocation = room;
-        this.output(room.getDescription(this));
+        this.output(room.render(this));
+    }
+    /**
+     * put collectible object on inventory
+     */
+    grab(item) {
+        this.inventory.push(item);
     }
     /**
      * this method will process the raw input from user (through the client)
@@ -39,9 +45,8 @@ class Player {
         let action = input.split(' '), command = action.shift();
         switch (command) {
             case 'explore':
-                this.output('current room: ' + this.currentLocation.getName());
-                this.output(this.currentLocation.getDescription(this));
-                this.output('players in this room: ' + this.currentLocation.getPlayers().reduce((pre, cur) => pre + ', ' + cur.name, ''));
+                this.output('current room: ' + this.currentLocation.getName() + ' - ' + this.currentLocation.getDescription(this));
+                this.output('players in this room: ' + this.currentLocation.getPlayers().map(p => p.name).join(', '));
                 break;
         }
     }
@@ -50,6 +55,9 @@ class Player {
      */
     output(message) {
         this.client.emit('output', message);
+    }
+    hasItem(item) {
+        return this.inventory.find(i => i.getName() === item) !== undefined;
     }
 }
 exports.Player = Player;

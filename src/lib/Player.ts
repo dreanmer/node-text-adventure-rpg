@@ -1,5 +1,6 @@
 import {InteractiveClient} from "./Client";
 import {Room} from "./Room";
+import {Collectible} from "./interactive/Collectible";
 
 /**
  * This class represents the player and his possible actions
@@ -8,7 +9,8 @@ export class Player {
 
     private client: InteractiveClient;
     private currentLocation: undefined | Room;
-    public name: string;
+    private inventory: Array<Collectible> = [];
+    name: string;
 
     /**
      * as the game will be multi client, each player will carry his own client/connection
@@ -23,18 +25,24 @@ export class Player {
             if (this.currentLocation) this.currentLocation.processAction(params.shift(), params, this);
             // player actions
             this.processAction(data);
-            // todo - if none action was triggered, we should output an `invalid action error`
         });
     }
 
     /**
      * move the player to a room
      */
-    public moveTo(room: Room): void {
+    moveTo(room: Room): void {
         if (this.currentLocation) this.currentLocation.removePlayer(this);
         room.addPlayer(this);
         this.currentLocation = room;
-        this.output(room.getDescription(this));
+        this.output(room.render(this));
+    }
+
+    /**
+     * put collectible object on inventory
+     */
+    grab(item: Collectible) : void {
+        this.inventory.push(item);
     }
 
     /**
@@ -46,9 +54,8 @@ export class Player {
 
         switch (command) {
             case 'explore':
-                this.output('current room: ' + this.currentLocation.getName());
-                this.output(this.currentLocation.getDescription(this));
-                this.output('players in this room: ' + this.currentLocation.getPlayers().reduce((pre, cur) => pre + ', ' + cur.name, ''));
+                this.output('current room: ' + this.currentLocation.getName() + ' - ' + this.currentLocation.getDescription(this));
+                this.output('players in this room: ' + this.currentLocation.getPlayers().map(p => p.name).join(', '));
                 break;
         }
     }
@@ -56,7 +63,11 @@ export class Player {
     /**
      * Outputs a message to the player client
      */
-    public output(message: string) {
+    output(message: string) {
         this.client.emit('output', message);
+    }
+
+    hasItem(item: string) : boolean {
+        return this.inventory.find(i => i.getName() === item) !== undefined;
     }
 }

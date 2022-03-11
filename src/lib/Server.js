@@ -10,7 +10,7 @@ class Server {
      * this method is responsible to bootstrap and start the game
      */
     start() {
-        this.broadcast('game starting');
+        this.broadcast('Game is starting.');
         let initialRoom = new InitialRoom_1.InitialRoom();
         this.players.forEach(player => {
             player.moveTo(initialRoom);

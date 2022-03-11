@@ -9,7 +9,7 @@ export class Server {
      * this method is responsible to bootstrap and start the game
      */
     public start(): void {
-        this.broadcast('game starting');
+        this.broadcast('Game is starting.');
         let initialRoom = new InitialRoom();
         this.players.forEach(player => {
             player.moveTo(initialRoom);

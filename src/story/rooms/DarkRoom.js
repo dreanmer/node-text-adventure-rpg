@@ -2,18 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DarkRoom = void 0;
 const Room_1 = require("../../lib/Room");
-const MainRoom_1 = require("./MainRoom");
+const Connection_1 = require("../../lib/interactive/Connection");
+const EntranceHall_1 = require("./EntranceHall");
+/**
+ * todo - wip
+ */
 class DarkRoom extends Room_1.SingletonRoom {
-    processAction(command, params, player) {
-        switch (command) {
-            case 'open':
-            case 'enter':
-                if (['west', 'door'].every(i => params.includes(i)))
-                    player.moveTo(MainRoom_1.MainRoom.getInstance());
-        }
+    constructor() {
+        super(...arguments);
+        this.interactions = [
+            new Connection_1.Connection('west door', 'Behind you, the `west door` where you come', EntranceHall_1.EntranceHall),
+        ];
     }
     getDescription(player) {
-        return "You can see nothing. Behind you the west `door` of the room.";
+        if (player.hasItem('torch')) {
+            return "With your torch you can see everything in this room";
+        }
+        return "Its soo much dark in this room that you can see nothing";
     }
     getName() {
         return "Dark Room";
