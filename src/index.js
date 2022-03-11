@@ -1,9 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const CliClient_1 = require("./clients/CliClient");
+const Client_1 = require("./lib/Client");
 const Player_1 = require("./lib/Player");
 const Server_1 = require("./lib/Server");
-let client = new CliClient_1.CliClient(), player = new Player_1.Player(client), server = new Server_1.Server();
-server.registerPlayer(player);
-server.start();
+let playerA = new Player_1.Player('Alexandre', new Client_1.CliClient()), playerB = new Player_1.Player('Bruna', new Client_1.NullClient()), server = new Server_1.Server();
+server.registerPlayer(playerA);
+server.registerPlayer(playerB);
+try {
+    server.start();
+}
+catch (err) {
+    // cli client will block this exception to be shown on console if the program gets interrupted
+    // so, we catch and log it without interrupting the program.
+    console.log(err);
+}
 //# sourceMappingURL=index.js.map

@@ -1,21 +1,33 @@
 import {Player} from "./Player";
-import {Room} from "./Room";
 import {InitialRoom} from "../story/rooms/InitialRoom";
 
 export class Server {
 
-    // private rooms: Array<Room> = [];
     private players: Array<Player> = [];
 
-    public start() {
+    /**
+     * this method is responsible to bootstrap and start the game
+     */
+    public start(): void {
+        this.broadcast('game starting');
         let initialRoom = new InitialRoom();
-        // this.rooms.push(initialRoom);
         this.players.forEach(player => {
             player.moveTo(initialRoom);
         })
     }
 
-    public registerPlayer(player: Player) {
+    /**
+     * add a user to the current server instance
+     */
+    public registerPlayer(player: Player): void {
+        this.broadcast(player.name + ' connected.');
         this.players.push(player);
+    }
+
+    /**
+     * broadcast an output message to every connected player
+     */
+    public broadcast(data: string): void {
+        this.players.forEach(player => player.output(data));
     }
 }
