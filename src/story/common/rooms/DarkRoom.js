@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DarkRoom = void 0;
-const Room_1 = require("../../lib/Room");
-const Connection_1 = require("../../lib/interactive/Connection");
+const Room_1 = require("../../../lib/Room");
+const Connection_1 = require("../../../lib/interactive/Connection");
 const EntranceHall_1 = require("./EntranceHall");
 /**
  * todo - wip

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
-const InitialRoom_1 = require("../story/rooms/InitialRoom");
+const InitialRoom_1 = require("../story/Common/rooms/InitialRoom");
 class Server {
     constructor() {
         this.players = [];

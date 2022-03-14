@@ -1,5 +1,5 @@
-import {Connection} from "../../lib/interactive/Connection";
-import {Player} from "../../lib/Player";
+import {Connection} from "../../../lib/interactive/Connection";
+import {Player} from "../../../lib/Player";
 
 export class WreckagePassage extends Connection {
 

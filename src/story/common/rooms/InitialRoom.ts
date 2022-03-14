@@ -1,8 +1,8 @@
-import {SingletonRoom, Room} from "../../lib/Room";
-import {Player} from "../../lib/Player";
+import {SingletonRoom, Room} from "../../../lib/Room";
+import {Player} from "../../../lib/Player";
 import {EntranceHall} from "./EntranceHall";
-import {Connection} from "../../lib/interactive/Connection";
-import {Collectible} from "../../lib/interactive/Collectible";
+import {Connection} from "../../../lib/interactive/Connection";
+import {Collectible} from "../../../lib/interactive/Collectible";
 
 export class InitialRoom extends SingletonRoom implements Room {
 

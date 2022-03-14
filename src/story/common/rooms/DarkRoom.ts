@@ -1,6 +1,6 @@
-import {SingletonRoom, Room} from "../../lib/Room";
-import {Player} from "../../lib/Player";
-import {Connection} from "../../lib/interactive/Connection";
+import {SingletonRoom, Room} from "../../../lib/Room";
+import {Player} from "../../../lib/Player";
+import {Connection} from "../../../lib/interactive/Connection";
 import {EntranceHall} from "./EntranceHall";
 
 /**

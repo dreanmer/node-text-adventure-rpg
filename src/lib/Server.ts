@@ -1,5 +1,5 @@
 import {Player} from "./Player";
-import {InitialRoom} from "../story/rooms/InitialRoom";
+import {InitialRoom} from "../story/Common/rooms/InitialRoom";
 
 export class Server {
 

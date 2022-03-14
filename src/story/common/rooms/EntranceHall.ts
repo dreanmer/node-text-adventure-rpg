@@ -1,8 +1,8 @@
-import {SingletonRoom, Room} from "../../lib/Room";
-import {Player} from "../../lib/Player";
+import {SingletonRoom, Room} from "../../../lib/Room";
+import {Player} from "../../../lib/Player";
 import {InitialRoom} from "./InitialRoom";
 import {DarkRoom} from "./DarkRoom";
-import {Connection} from "../../lib/interactive/Connection";
+import {Connection} from "../../../lib/interactive/Connection";
 import {LockedDoor} from "../interactive/LockedDoor";
 import {WreckagePassage} from "../interactive/WreckagePassage";
 

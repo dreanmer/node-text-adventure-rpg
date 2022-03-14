@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InitialRoom = void 0;
-const Room_1 = require("../../lib/Room");
+const Room_1 = require("../../../lib/Room");
 const EntranceHall_1 = require("./EntranceHall");
-const Connection_1 = require("../../lib/interactive/Connection");
-const Collectible_1 = require("../../lib/interactive/Collectible");
+const Connection_1 = require("../../../lib/interactive/Connection");
+const Collectible_1 = require("../../../lib/interactive/Collectible");
 class InitialRoom extends Room_1.SingletonRoom {
     constructor() {
         super(...arguments);
