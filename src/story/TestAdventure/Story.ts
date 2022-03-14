@@ -7,7 +7,7 @@ export class Story {
             new Room({
                 name: "Switch Room",
                 description: "A big room with a switch at the center",
-                interactibles: [
+                interactions: [
                     new Door({
                         target: "Passageway",
                         keywords: ["north"]
@@ -28,7 +28,7 @@ export class Story {
             new Room({
                 name: "Passageway",
                 description: "A passageway with a locked door",
-                interactibles: [
+                interactions: [
                     new Door({
                         target: "Switch Room",
                         keywords: ["south"]
@@ -47,7 +47,7 @@ export class Story {
                         "With the light of the torch, you can see a treasure on the middle of the room" :
                         "You can see nothing"
                 },
-                interactibles: [
+                interactions: [
                     new HiddenInteraction(
                         new Door({
                             target: "Switch Room",
